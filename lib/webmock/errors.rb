@@ -7,12 +7,8 @@ module WebMock
 
       lines = []
       lines << "Real HTTP connections are disabled. Unregistered request: #{request_signature}"
-
-      if ENV['WEBMOCK_VERBOSE'].to_bool
-        lines << request_signature_snippet.stubbing_instructions
-        lines << request_signature_snippet.request_stubs
-      end
-
+      lines << request_signature_snippet.stubbing_instructions if Config.instance.show_stubbing_instructions?
+      lines << request_signature_snippet.request_stubs if Config.instance.show_request_stubs?
       lines << '=' * 60
 
       super(lines.compact.join("\n\n"))

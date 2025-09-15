@@ -126,6 +126,18 @@ module WebMock
     Config.instance.show_stubbing_instructions
   end
 
+  def self.hide_request_stubs!
+    Config.instance.show_request_stubs = false
+  end
+
+  def self.show_request_stubs!
+    Config.instance.show_request_stubs = false
+  end
+  
+  def self.show_request_stubs?
+    Config.instance.show_request_stubs
+  end
+
   def self.reset!
     WebMock::RequestRegistry.instance.reset!
     WebMock::StubRegistry.instance.reset!
